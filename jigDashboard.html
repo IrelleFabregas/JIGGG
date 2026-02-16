@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIG MONITORING DASHBOARD</title>
+    <link rel="stylesheet" href="../css/jigDashboard.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="dashboard">
+    <!-- SIDEBAR -->
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <h2 class="brand">TRC PANEL</h2>
+    <ul class="menu">
+        <div class="main-menu-items">
+            
+            <!-- JIG SECTION -->
+            <div class="menu-section-label">JIG MANAGEMENT</div>
+            
+            <li class="menu-item active"> <!-- Add 'active' class to current page -->
+                <a href="../html/jigDashboard.html">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../html/jigMasterlist.html">
+                    <span>Masterlist</span>
+                </a>
+            </li>
+
+            <li class="has-submenu" id="masterlistToggle">
+                <a href="javascript:void(0)">
+                    <span>Transaction</span>
+                    <span class="arrow-icon">▼</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="../html/jigIncoming.html">Incoming</a></li>
+                    <li><a href="../html/jigOutgoing.html">Outgoing</a></li>
+                </ul>
+            </li>
+
+            <!-- DIVIDER -->
+            <li class="menu-divider"></li>
+
+            <!-- MCB SECTION -->
+            <div class="menu-section-label">MCB MANAGEMENT</div>
+            
+            <li class="menu-item">
+                <a href="../html/mcbDashboard.html">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../html/mcbMasterlist.html">
+                    <span>Masterlist</span>
+                </a>
+            </li>
+
+            <li class="has-submenu" id="mcbTransactionToggle">
+                <a href="javascript:void(0)">
+                    <span>Transaction</span>
+                    <span class="arrow-icon">▼</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="../html/mcbIncoming.html">Incoming</a></li>
+                    <li><a href="../html/mcbOutgoing.html">Outgoing</a></li>
+                </ul>
+            </li>
+            
+        </div>
+
+        <li class="logout-item">
+            <a href="../html/login.html" id="logoutBtn">
+                <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+
+    <main class="main">
+    <div class="container">
+        <h3 class="section-title">Detailed Reporting</h3>
+        
+        <div class="table-header">
+            <input type="text1" id="searchInput" placeholder="Search by Serial" />
+            <button id="exportBtn">Export to Excel</button>
+        </div>
+
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>Serial</th>
+            <th>Stock Control</th>
+            <th>Description</th>
+            <th>Customer</th>
+            <th>Model</th>
+            <th>Area</th>
+            <th>Line</th>
+            <th>Remarks</th>
+            <th>Status</th>
+
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        <!-- JS will populate rows here -->
+    </tbody>
+</table>
+
+
+        <div class="pagination">
+            <button id="prevBtn">Previous</button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn">Next</button>
+        </div>
+
+                <hr class="divider">
+
+
+<div class="summary-flex-container">
+    <div class="summary-container">
+        <h3 class="section-title">TRC Equipment Summary</h3>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Area</th>
+                    <th>Equipment Quantity</th>
+                    <th>Good</th>
+                    <th>Not Good</th>
+                </tr>
+            </thead>
+            <tbody id="trcSummaryBody"></tbody>
+        </table>
+        <div class="pagination">
+            <button class="prevBtn" data-target="trc">Previous</button>
+            <span id="trcPageInfo"></span>
+            <button class="nextBtn" data-target="trc">Next</button>
+        </div>
+    </div>
+
+    <div class="summary-container">
+        <h3 class="section-title">EPPI Equipment Summary</h3>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Area</th>
+                    <th>Equipment Quantity</th>
+                    <th>Good</th>
+                    <th>Not Good</th>
+                </tr>
+            </thead>
+            <tbody id="eppiSummaryBody"></tbody>
+        </table>
+        <div class="pagination">
+            <button class="prevBtn" data-target="eppi">Previous</button>
+            <span id="eppiPageInfo"></span>
+            <button class="nextBtn" data-target="eppi">Next</button>
+        </div>
+    </div>
+</div>
+<script>
+    searchInput?.addEventListener("keyup", (e) => {
+    const filter = e.target.value.toLowerCase();
+    
+    // Filter logic now only evaluates the 'serial' field
+    tableData = originalData.filter(item => {
+        const serial = (item.serial || "").toLowerCase();
+        return serial.includes(filter);
+    });
+
+    currentPage = 1;
+    renderTable();
+});
+</script>
+
+
+        
+    </div>
+</main>
+</div>
+<script src="../javascript/fetchSummary.js"></script>
+<script src="../javascript/jigDashboard.js"></script>
+<script src="../javascript/jigMasterlist.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+/* Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login card container */
+.login-card {
+  display: flex;
+  width: 900px;           /* fixed width */
+  height: 500px;          /* fixed height */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Logo section */
+.logo-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 2px solid #ccc; /* vertical divider line */
+}
+
+.logo {
+  width: 400px;
+  height: auto;
+}
+
+/* Login form section */
+.login-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-form h2 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px; /* Adds a little space below the title */
+  }
+.login-form {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #002c5c;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #00254d;
+}
+
+
+/* TRC Notification Modal */
+.trc-modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(15, 23, 42, 0.7); 
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+.trc-modal-content {
+    background: #ffffff;
+    width: 380px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    animation: trcModalSlideIn 0.3s ease-out;
+}
+
+@keyframes trcModalSlideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.trc-modal-header {
+    padding: 1rem 1.5rem;
+    background: #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#trcModalTitle {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.trc-modal-body {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: #475569;
+}
+
+.trc-modal-footer {
+    padding: 1rem;
+    background: #f1f5f9;
+    text-align: center;
+}
+
+.trc-btn {
+    background-color: #002c5c;
+    color: white;
+    padding: 0.6rem 2rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.trc-close-btn {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #64748b;
+}
+
+/* Success/Error Color States */
+.trc-success #trcModalTitle { color: #16a34a; }
+.trc-error #trcModalTitle { color: #dc2626; }

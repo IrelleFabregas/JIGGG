@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INCOMING | TRC</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/jigDashboard.css">
+    <link rel="stylesheet" href="../css/jigIncoming.css">
+
+    <style>
+        /* Scanner-specific styles */
+        .scanner-highlight {
+            animation: scanPulse 0.5s ease-in-out;
+        }
+        
+        @keyframes scanPulse {
+            0%, 100% { background-color: transparent; }
+            50% { background-color: #d4edda; }
+        }
+        
+        .field-locked {
+            background-color: #e7f3ff !important;
+            cursor: not-allowed;
+        }
+        
+        #scannerControls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-size: 12px;
+            z-index: 1000;
+        }
+        
+        .scanner-btn {
+            padding: 5px 10px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        .scanner-btn.active {
+            background: #28a745;
+            color: white;
+        }
+        
+        .scanner-btn.inactive {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+<aside class="sidebar">
+    <h2 class="brand">TRC PANEL</h2>
+    <ul class="menu">
+        <div class="main-menu-items">
+            
+            <!-- JIG SECTION -->
+            <div class="menu-section-label">JIG MANAGEMENT</div>
+            
+            <li class="menu-item">
+                <a href="../html/jigDashboard.html">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../html/jigMasterlist.html">
+                    <span>Masterlist</span>
+                </a>
+            </li>
+
+            <li class="has-submenu open" id="masterlistToggle">
+                <a href="javascript:void(0)" class="active">
+                    <span>Transaction</span>
+                    <span class="arrow-icon">▼</span>
+                </a>
+                <ul class="submenu">
+                    <li class="active"><a href="../html/jigIncoming.html">Incoming</a></li>
+                    <li><a href="../html/jigOutgoing.html">Outgoing</a></li>
+                </ul>
+            </li>
+
+            <!-- DIVIDER -->
+            <li class="menu-divider"></li>
+
+            <!-- MCB SECTION -->
+            <div class="menu-section-label">MCB MANAGEMENT</div>
+            
+            <li class="menu-item">
+                <a href="../html/mcbDashboard.html">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../html/mcbMasterlist.html">
+                    <span>Masterlist</span>
+                </a>
+            </li>
+
+            <li class="has-submenu" id="mcbTransactionToggle">
+                <a href="javascript:void(0)">
+                    <span>Transaction</span>
+                    <span class="arrow-icon">▼</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="../html/mcbIncoming.html">Incoming</a></li>
+                    <li><a href="../html/mcbOutgoing.html">Outgoing</a></li>
+                </ul>
+            </li>
+            
+        </div>
+
+        <li class="logout-item">
+            <a href="../html/login.html" id="logoutBtn">
+                <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+    <div class="panel">
+        <div class="content-container">
+            <h2>INCOMING</h2>
+            <form id="masterlistForm">
+                <div class="full-width">
+                    <label for="serial">Serial Number 📱</label>
+                    <input type="text" 
+                           id="serial" 
+                           name="serial" 
+                           placeholder="Scan barcode or enter serial number" 
+                           autocomplete="off"
+                           required>
+                    <small style="color: #6c757d; display: block; margin-top: 5px;">
+                        💡 Use handheld scanner or type manually
+                    </small>
+                </div>
+
+                <div class="full-width">
+                    <label for="itemDescription">Item Description</label>
+                    <input type="text" 
+                           id="itemDescription" 
+                           name="itemDescription" 
+                           placeholder="Description will appear here" 
+                           required>
+                </div>
+
+                <div>
+                    <label for="customer">Customer</label>
+                    <input type="text" 
+                           id="customer" 
+                           name="customer" 
+                           placeholder="Enter Customer" 
+                           required>
+                </div>
+
+                <div>
+                    <label for="model">Model</label>
+                    <input type="text" 
+                           id="model" 
+                           name="model" 
+                           placeholder="Enter Model" 
+                           required>
+                </div>
+
+                <div>
+                    <label for="area">Area</label>
+                    <select id="area" name="area" required>
+                        <option value="">-- Select Area --</option>
+                        <option value="SCANNER ASSY">SCANNER ASSY</option>
+                        <option value="FT CHECKER">FT CHECKER</option>
+                        <option value="ADF ASSY">ADF ASSY</option>
+                        <option value="ROLLER EJ AND ROLLER PF ASSY">ROLLER EJ AND ROLLER PF ASSY</option>
+                        <option value="FRAME IS">FRAME IS</option>
+                        <option value="DUPLEX ASSY">DUPLEX ASSY</option>
+                        <option value="HOLDER DAMPER">HOLDER DAMPER</option>
+                        <option value="HOLDER MAINTENANCE">HOLDER MAINTENANCE</option>
+                        <option value="PICKUP ASSY">PICK UP ASSY</option>
+                        <option value="PGU ASSY">PGU ASSY</option>
+                        <option value="SHAFT ROLLER ASSY">SHAFT ROLLER ASSY</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="line">Line</label>
+                    <select id="line" name="line" required>
+                        <option value="">-- Select Line --</option>
+                        <option value="LINE 1">LINE 1</option>
+                        <option value="LINE 2">LINE 2</option>
+                        <option value="LINE 3">LINE 3</option>
+                        <option value="LINE 4">LINE 4</option>
+                        <option value="LINE 5">LINE 5</option>
+                        <option value="LINE 6">LINE 6</option>
+                        <option value="LINE 7">LINE 7</option>
+                        <option value="LINE 8">LINE 8</option>
+                        <option value="LINE 9">LINE 9</option>
+                        <option value="LINE 10">LINE 10</option>
+                        <option value="LINE 11">LINE 11</option>
+                        <option value="LINE 12">LINE 12</option>
+                        <option value="LINE 13">LINE 13</option>
+                        <option value="LINE 14">LINE 14</option>
+                        <option value="LINE 15">LINE 15</option>
+                        <option value="LINE 16">LINE 16</option>
+                    </select>
+                </div>
+
+                <div class="full-width">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="">-- Select Status --</option>
+                        <option value="IN USE">IN USE</option>
+                        <option value="FOR REPAIR">FOR REPAIR</option>
+                        <option value="GOOD">GOOD</option>
+                        <option value="NO GOOD">NO GOOD</option>
+                    </select>
+                </div>
+
+                <div class="full-width">
+                    <label for="remarks">Remarks</label>
+                    <select id="remarks" name="remarks" required>
+                        <option value="">-- Select Remark --</option>
+                        <option value="GOOD">GOOD</option>
+                        <option value="NO GOOD">NO GOOD</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn">Save Record</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scanner Controls (for testing/debugging) -->
+<div id="scannerControls">
+    <span id="scannerStatusText">🔵 Scanner Active</span>
+    <button class="scanner-btn active" id="toggleScannerBtn" onclick="window.scannerUtils.toggleScanner(!window.scannerConfig?.enabled)">
+        Toggle
+    </button>
+</div>
+
+<!-- Notification Modal -->
+<div id="trcNotificationModal" class="trc-modal">
+    <div class="trc-modal-content">
+        <div class="trc-modal-header">
+            <h5 id="trcModalTitle">System Message</h5>
+            <span id="closeTrcModal" class="trc-close-btn">&times;</span>
+        </div>
+        <div class="trc-modal-body">
+            <p id="trcModalMessage"></p>
+        </div>
+        <div class="trc-modal-footer">
+            <button id="trcModalConfirmBtn" class="trc-btn">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<!-- IMPORTANT: Load scanner script FIRST before other scripts -->
+<script src="../javascript/jigIncomingScanner.js"></script>
+<script src="../javascript/jigIncoming.js"></script>
+<script src="../javascript/jigMasterlist.js"></script>
+<script src="../javascript/jigDashboard.js"></script>
+
+<!-- Modal close handlers -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('trcNotificationModal');
+        const closeBtn = document.getElementById('closeTrcModal');
+        const confirmBtn = document.getElementById('trcModalConfirmBtn');
+        
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+        }
+        
+        if (confirmBtn) {
+            confirmBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+.input-with-icon {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* extra right padding for icon */
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    background: url('../img/search.png') no-repeat right 10px center;
+    background-size: 35px 35px;
+    cursor: pointer; /* indicate clickable icon */
+}
+
+.item-description {
+    margin-top: 5px;
+    font-style: italic;
+    color: #333;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* space for icon */
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.item-description {
+    margin-top: 5px;
+    font-style: italic;
+    color: #333;
+}
+
+/* Make the panel a flex container to center content */
+.panel {
+    margin-left: 260px; /* Width of your sidebar */
+    width: calc(100% - 260px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f4f6f8;
+}
+
+/* Container Tweaks */
+.content-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 650px; /* Keeps the form from getting too wide */
+}
+/* Headers */
+.content-container h2 {
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* Active state for submenu items */
+.submenu li.active a {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.submenu li.active a::before {
+    content: '●';
+    position: absolute;
+    left: 28px;
+    opacity: 1;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.content-container h3 {
+    color: #000000;
+    font-size: 0.90rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
+}
+
+/* Form Layout */
+#masterlistForm {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Consistent vertical spacing */
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Label & Input Alignment */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns text to the left */
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+input[type="text1"],
+select {
+    width: 40%;
+    height: 45px; /* Fixed height for all fields */
+    padding: 0 15px;
+    border: 1px solid #edf2f7;
+    border-radius: 8px;
+    background-color: #f7fafc;
+    font-size: 0.9rem;
+    color: #2d3748;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Unified Textbox & Select Styling */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    height: 45px; /* Fixed height for all fields */
+    padding: 0 15px;
+    border: 1px solid #edf2f7;
+    border-radius: 8px;
+    background-color: #f7fafc;
+    font-size: 0.9rem;
+    color: #2d3748;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover & Focus */
+input:hover, select:hover {
+    border-color: #cbd5e0;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4299e1;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+/* Disabled/Read-only style */
+input[readonly] {
+    background-color: #edf2f7;
+    color: #718096;
+    cursor: not-allowed;
+}
+
+/* Button */
+#submitBtn {
+    margin-top: 10px;
+    height: 48px;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#submitBtn:hover {
+    background-color: #2b6cb0;
+}
+
+
+
+/* Brand/Logo Section */
+.brand {
+    padding: 30px 20px;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.logout {
+  background: rgba(0, 0, 128);
+}
+.logout-item a {
+  background: #ff4757;
+  color: white !important;
+}
+
+.logout-item a:hover {
+  background: #ff6b81;
+}
+
+.logout-item a {
+  background: #ff4757;
+  color: white !important;
+
+}
+
+.logout-item a:hover {
+  background: #ff6b81;
+}
+
+
+/* New Renamed Modal Container */
+.trc-modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(15, 23, 42, 0.7); /* Slate blue tint */
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+.trc-modal-content {
+    background: #ffffff;
+    width: 380px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+/* Header styling based on renamed IDs */
+.trc-modal-header {
+    padding: 1rem 1.5rem;
+    background: #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#trcModalTitle {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.trc-modal-body {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Update the footer to center its contents */
+.trc-modal-footer {
+    padding: 1.5rem;
+    background: #f1f5f9; /* Match the header for a balanced look */
+    text-align: center;  /* This centers the button */
+    display: flex;       /* Alternative for perfect centering */
+    justify-content: center;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Ensure the button has consistent sizing */
+.trc-btn {
+    min-width: 120px; /* Gives the button more presence in the center */
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.trc-btn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px); /* Slight lift on hover for professional feel */
+}
+
+/* Status variants */
+.trc-success #trcModalTitle { color: #16a34a; }
+.trc-error #trcModalTitle { color: #dc2626; }

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterlist | TRC</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/jigDashboard.css">
+    <link rel="stylesheet" href="../css/jigMasterlist.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2 class="brand">TRC PANEL</h2>
+        <ul class="menu">
+            <div class="main-menu-items">
+                
+                <!-- JIG SECTION -->
+                <div class="menu-section-label">JIG MANAGEMENT</div>
+                
+                <li class="menu-item">
+                    <a href="../html/jigDashboard.html">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                
+                <li class="menu-item active">
+                    <a href="../html/jigMasterlist.html">
+                        <span>Masterlist</span>
+                    </a>
+                </li>
+
+                <li class="has-submenu" id="masterlistToggle">
+                    <a href="javascript:void(0)">
+                        <span>Transaction</span>
+                        <span class="arrow-icon">▼</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="../html/jigIncoming.html">Incoming</a></li>
+                        <li><a href="../html/jigOutgoing.html">Outgoing</a></li>
+                    </ul>
+                </li>
+
+                <!-- DIVIDER -->
+                <li class="menu-divider"></li>
+
+                <!-- MCB SECTION -->
+                <div class="menu-section-label">MCB MANAGEMENT</div>
+                
+                <li class="menu-item">
+                    <a href="../html/mcbDashboard.html">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="../html/mcbMasterlist.html">
+                        <span>Masterlist</span>
+                    </a>
+                </li>
+
+                <li class="has-submenu" id="mcbTransactionToggle">
+                    <a href="javascript:void(0)">
+                        <span>Transaction</span>
+                        <span class="arrow-icon">▼</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="../html/mcbIncoming.html">Incoming</a></li>
+                        <li><a href="../html/mcbOutgoing.html">Outgoing</a></li>
+                    </ul>
+                </li>
+                
+            </div>
+
+            <li class="logout-item">
+                <a href="../html/login.html" id="logoutBtn">
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- PANEL -->
+    <div class="panel">
+        <div class="content-container">
+
+            <!-- LEFT SIDE (FORM) -->
+            <div class="left-section">
+                <form id="inventoryForm">
+                    <h2>MASTERLIST</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group full-width">
+                            <label>Item Description</label>
+                            <input type="text" id="itemDescription" name="itemDescription"placeholder="Enter the Item Description" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Serial Number</label>
+                            <input type="text" id="serial" name="serial" placeholder="Enter the Serial Number"  required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stock Control</label>
+                            <input type="text" id="stockControl" name="stockControl" placeholder="Enter the Stock Control"   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Customer</label>
+                            <select id="customer" name="customer">
+                                <option value="">Select Customer</option>
+                                <option value="EPPI">EPPI</option>
+                                <option value="TRC">TRC</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Model</label>
+                            <select id="model" name="model">
+                                <option value="">Select Model</option>
+                                <option value="MODEL 1">MODEL 1</option>
+                                <option value="MODEL 2">MODEL 2</option>
+                                <option value="MODEL 3">MODEL 3</option>
+                                <option value="MODEL 4">MODEL 4</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <select id="remarks" name="remarks">
+                                <option value="">Select Remarks</option>
+                                <option value="GOOD">Good</option>
+                                <option value="NO GOOD">No Good</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status</label>
+                                <select id="status" name="status" required>
+        <option value="">Select Status</option>
+        <option value="IN-USE">IN-USE</option>
+        <option value="FOR REPAIR">FOR REPAIR</option>
+        <option value="FOR MODIFICATION">FOR MODIFICATION</option>
+        <option value="OTHERS">OTHERS</option>
+    </select>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="submit-btn">Add Item</button>
+                </form>
+            </div>
+
+            <!-- RIGHT SIDE (TABLE) -->
+            <div class="right-section">
+                <div class="records-container">
+
+                    <div class="records-header">
+                        <h2>MASTERLIST RECORDS</h2>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="searchInputs" class="form-control" placeholder="Search..." style="max-width: 300px;">
+                            <button id="refreshBtn" class="btn btn-primary btn-sm">🔄 Refresh</button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="table table-striped">
+                            <thead>
+    <tr>
+        <th>Description</th>
+        <th>Customer</th>
+        <th>Serial</th>
+        <th>Stock Control</th>
+        <th>Model</th>
+        <th>Area</th>
+        <th>Line</th>
+        <th>Remarks</th>
+        <th>Status</th>
+    </tr>
+</thead>
+                            <tbody id="masterlistTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination Controls -->
+                    <div class="pagination-controls" style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 15px;">
+                        <button id="prevBtn" class="btn btn-secondary btn-sm">← Previous</button>
+                        <span id="pageInfo" style="font-weight: bold;">Page 1 of 1</span>
+                        <button id="nextBtn" class="btn btn-secondary btn-sm">Next →</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- RESPONSE MODAL (for Add Item success/error) -->
+<div id="responseModal" class="trc-modal">
+    <div class="trc-modal-content">
+        <div class="trc-modal-header">
+            <h5>Notification</h5>
+            <span id="closeModal" class="close">&times;</span>
+        </div>
+        <div class="trc-modal-body">
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+</div>
+
+<!-- ACTION MODAL (Double-click options: Edit or Delete) -->
+<div id="actionModal" class="trc-modal">
+    <div class="trc-modal-content">
+        <div class="trc-modal-header">
+            <h5>Select Action</h5>
+            <span id="closeActionModal" class="close">&times;</span>
+        </div>
+        <div class="trc-modal-body">
+            <p id="selectedItemName" style="margin-bottom: 20px; font-weight: bold;"></p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button id="editRecordBtn" class="btn btn-warning">✏️ Edit</button>
+                <button id="deleteRecordBtn" class="btn btn-danger">🗑️ Delete</button>
+            </div>
+        </div>
+        <div class="trc-modal-footer">
+            <button id="cancelActionBtn" class="btn btn-secondary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div id="editModal" class="trc-modal">
+    <div class="trc-modal-content">
+        <div class="trc-modal-header">
+            <h5>Edit Item</h5>
+            <span id="closeEditModal" class="close">&times;</span>
+        </div>
+
+        <div class="trc-modal-body">
+            <form id="editInventoryForm">
+                <input type="hidden" id="editId" name="id">
+
+                <label>Description</label>
+                <input type="text" id="editItemDescription" name="itemDescription" class="form-control" required>
+
+                <label>Customer</label>
+                <input type="text" id="editCustomer" name="customer" class="form-control" required>
+
+                <label>Serial</label>
+                <input type="text" id="editSerial" name="serial" class="form-control" readonly>
+
+                <label>Stock Control</label>
+                <input type="text" id="editStockControl" name="stockControl" class="form-control" required>
+
+                <label>Model</label>
+                <input type="text" id="editModel" name="model" class="form-control" required>
+
+                <label>Area</label>
+                <input type="text" id="editArea" name="area" class="form-control" required>
+
+                <label>Line</label>
+                <input type="text" id="editLine" name="line" class="form-control" required>
+
+                <label>Remarks</label>
+                <input type="text" id="editRemarks" name="remarks" class="form-control" required>
+
+                <label>Status</label>
+                <select id="editStatus" name="status" class="form-control" required>
+                    <option value="IN-USE">IN-USE</option>
+                    <option value="FOR REPAIR">FOR REPAIR</option>
+                    <option value="FOR MODIFICATION">FOR MODIFICATION</option>
+                    <option value="OTHERS">OTHERS</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelEditBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-warning">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../javascript/jigMasterlist.js"></script>
+<script src="../javascript/jigDashboard.js"></script>
+
+</body>
+</html>

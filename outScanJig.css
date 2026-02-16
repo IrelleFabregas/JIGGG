@@ -1,0 +1,92 @@
+/* Container alignment */
+.panel {
+    margin-left: 260px; /* Width of sidebar */
+    width: calc(100% - 260px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.content-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 700px; /* Slightly wider to accommodate two columns comfortably */
+}
+
+/* Form container */
+#outScanForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between rows */
+}
+/* The Grid Logic for ONLY the top row */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split 50/50 */
+    gap: 20px;
+    width: 100%;
+}
+
+/* Individual groups (will naturally take 100% width if not in a grid) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Unified Typography and Inputs */
+label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #4a5568;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+input, select {
+    width: 100%; /* Force all fields to fill their container */
+    height: 45px;
+    padding: 0 15px;
+    border: 1px solid #edf2f7;
+    border-radius: 8px;
+    background-color: #f7fafc;
+    box-sizing: border-box; /* Important: Includes padding in width */
+}
+
+/* Active state for submenu items */
+.submenu li.active a {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.submenu li.active a::before {
+    content: '●';
+    position: absolute;
+    left: 28px;
+    opacity: 1;
+}
+/* Button styling */
+#submitBtn {
+    width: 100%;
+    height: 50px;
+    background-color: #3182ce;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Headers */
+.content-container h2 {
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
